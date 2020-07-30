@@ -46,7 +46,7 @@ DEMO_COMMENT_COLOR=$GREY
 ##
 # prints the script usage
 ##
-function usage() {
+function usage {
   echo -e ""
   echo -e "Usage: $0 [options]"
   echo -e ""
@@ -62,7 +62,7 @@ function usage() {
 # wait for user to press ENTER
 # if $PROMPT_TIMEOUT > 0 this will be used as the max time for proceeding automatically
 ##
-function wait() {
+function wait {
   if [[ "$PROMPT_TIMEOUT" == "0" ]]; then
     read -rs
   else
@@ -78,7 +78,7 @@ function wait() {
 # usage: p "ls -l"
 #
 ##
-function p() {
+function p {
   if [[ ${1:0:1} == "#" ]]; then
     cmd=$DEMO_COMMENT_COLOR$1$COLOR_RESET
   else
@@ -121,7 +121,7 @@ function p() {
 # usage: pe "ls -l"
 #
 ##
-function pe() {
+function pe {
   # print the command
   p "$@"
 
@@ -137,7 +137,7 @@ function pe() {
 # usage : cmd
 #
 ##
-function cmd() {
+function cmd {
   # render the prompt
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
   printf "$x\033[0m"
@@ -146,7 +146,7 @@ function cmd() {
 }
 
 
-function check_pv() {
+function check_pv {
   command -v pv >/dev/null 2>&1 || {
 
     echo ""
